@@ -22,7 +22,7 @@ const DoctorAppointments = () => {
 
       <div className='bg-white border rounded text-sm max-h-[80vh] overflow-y-scroll'>
         <div className='max-sm:hidden grid grid-cols-[0.5fr_2fr_1fr_1fr_3fr_1fr_1fr] gap-1 py-3 px-6 border-b'>
-          <p>#</p>
+          <p>S.No</p>
           <p>Patient</p>
           <p>Payment</p>
           <p>Age</p>
@@ -32,7 +32,7 @@ const DoctorAppointments = () => {
         </div>
         {appointments.map((item, index) => (
           <div className='flex flex-wrap justify-between max-sm:gap-5 max-sm:text-base sm:grid grid-cols-[0.5fr_2fr_1fr_1fr_3fr_1fr_1fr] gap-1 items-center text-gray-500 py-3 px-6 border-b hover:bg-gray-50' key={index}>
-            <p className='max-sm:hidden'>{index}</p>
+            <p className='max-sm:hidden'>{index + 1}</p>
             <div className='flex items-center gap-2'>
               <img src={item.userData.image} className='w-8 rounded-full' alt="" /> <p>{item.userData.name}</p>
             </div>

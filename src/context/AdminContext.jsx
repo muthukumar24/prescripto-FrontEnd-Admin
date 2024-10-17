@@ -9,13 +9,13 @@ const AdminContextProvider = (props) => {
 
     const [aToken, setAToken] = useState(localStorage.getItem('aToken') ? localStorage.getItem('aToken') : '')
 
-    const [appoinments, setAppointments] = useState([]);
+    const [appointments, setAppointments] = useState([]);
     const [doctors, setDoctors] = useState([]);
     const [dashData, setDashData] = useState(false);
 
     const getAllDoctors = async () => {
         try {
-            const { data } = await axios.get('http://localhost:4000/api/admin/all-doctors', {headers: { aToken }});
+            const { data } = await axios.get('https://prescripto-backend-1af3.onrender.com/api/admin/all-doctors', {headers: { aToken }});
             if(data.success){
                 setDoctors(data.doctors);
             }
@@ -29,7 +29,7 @@ const AdminContextProvider = (props) => {
 
     const changeAvailability = async (docId) => {
         try {
-            const { data } = await axios.post('http://localhost:4000/api/admin/change-availability', { docId }, {headers: { aToken }});
+            const { data } = await axios.post('https://prescripto-backend-1af3.onrender.com/api/admin/change-availability', { docId }, {headers: { aToken }});
             if(data.success){
                 toast.success(data.message);
                 getAllDoctors();
@@ -45,7 +45,7 @@ const AdminContextProvider = (props) => {
 
     const getAllAppointments = async () => {
         try {
-            const { data } = await axios.get('http://localhost:4000/api/admin/appointments', {headers: { aToken }});
+            const { data } = await axios.get('https://prescripto-backend-1af3.onrender.com/api/admin/appointments', {headers: { aToken }});
             if(data.success){
                 setAppointments(data.appointments.reverse());
             }
@@ -58,25 +58,9 @@ const AdminContextProvider = (props) => {
         }
     }
 
-    const cancelAppointment = async (appoinmentId) => {
-        try {
-            const { data } = await axios.post('http://localhost:4000/api/admin/cancel-appointment', { appoinmentId }, { headers: { aToken }});
-            if(data.success){
-                toast.success(data.message);
-                getAllAppointments();
-            }
-            else{
-                toast.error(data.message);
-            }
-        } catch (error) {
-            toast.error(error.message);
-            console.log(error)
-        }
-    }
-
     const getDashData = async () => {
         try {
-            const { data } = await axios.get('http://localhost:4000/api/admin/dashboard', { headers: { aToken }});
+            const { data } = await axios.get('https://prescripto-backend-1af3.onrender.com/api/admin/dashboard', { headers: { aToken }});
             if(data.success){
                 setDashData(data.dashData);
             }
@@ -92,8 +76,8 @@ const AdminContextProvider = (props) => {
     const value = {
         aToken, setAToken, doctors,
         getAllDoctors, changeAvailability, 
-        appoinments, getAllAppointments,
-        getDashData, cancelAppointment, 
+        appointments, getAllAppointments,
+        getDashData, 
         dashData
     }
 

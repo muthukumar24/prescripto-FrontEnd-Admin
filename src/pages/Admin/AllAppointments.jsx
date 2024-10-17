@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
-import { assets } from '../../assets/assets'
 import { useContext } from 'react'
 import { AdminContext } from '../../context/AdminContext'
 import { AppContext } from '../../context/AppContext'
 
 const AllAppointments = () => {
 
-  const { aToken, appointments, cancelAppointment, getAllAppointments } = useContext(AdminContext)
+  const { aToken, appointments, getAllAppointments } = useContext(AdminContext)
   const { slotDateFormat, calculateAge, currency } = useContext(AppContext)
   
+  // console.log(appointments)
   useEffect(() => {
     if (aToken) {
       getAllAppointments()
@@ -45,7 +45,7 @@ const AllAppointments = () => {
                     <img src={item.docData.image} className='w-8 rounded-full bg-gray-200' alt="" /> <p>{item.docData.name}</p>
                   </div>
                   <p>{currency}{item.amount}</p>
-                  {item.cancelled ? <p className='text-red-400 text-xs font-medium'>Cancelled</p> : item.isCompleted ? <p className='text-green-500 text-xs font-medium'>Completed</p> : <img onClick={() => cancelAppointment(item._id)} className='w-10 cursor-pointer' src={assets.cancel_icon} alt="" />}
+                  {item.cancelled ? <p className='text-red-400 text-xs font-medium'>Cancelled</p> : item.isCompleted ? <p className='text-green-500 text-xs font-medium'>Completed</p> : <p className='text-blue-600 text-xs font-medium'>Pending</p>}
                 </div>
               ))}
             </>

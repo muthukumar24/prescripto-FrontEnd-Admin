@@ -35,7 +35,7 @@ const EditDoctorModal = ({ doctor, isOpen, onClose, getAllDoctors, aToken }) => 
             formData.append('degree', degree);
             formData.append('address', JSON.stringify({ line1: address1, line2: address2 }));
 
-            const { data } = await axios.put(`http://localhost:4000/api/admin/update-doctor/${doctor._id}`, formData, {
+            const { data } = await axios.put(`https://prescripto-backend-1af3.onrender.com/api/admin/update-doctor/${doctor._id}`, formData, {
                 headers: { aToken },
             });
 

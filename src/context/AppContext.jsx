@@ -7,22 +7,27 @@ const AppContextProvider = (props) => {
 
     const currency = '₹';
 
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
+    // Function to format the date eg. ( 20_01_2000 => 20 Jan 2000 )
     const slotDateFormat = (slotDate) => {
-        const dateArray = slotDate.split('_');
-        return dateArray[0] + " " + months[Number(dateArray[1]) + " " + dateArray[2]]
+        const dateArray = slotDate.split('_')
+        return dateArray[0] + " " + months[Number(dateArray[1])] + " " + dateArray[2]
     }
 
+    // Function to calculate the age eg. ( 20_01_2000 => 24 )
     const calculateAge = (dob) => {
-        const today = new Date();
-        const birthDate = new Date(dob);
-        let age = today.getFullYear() - birthDate.getFullYear();
+        const today = new Date()
+        const birthDate = new Date(dob)
+        let age = today.getFullYear() - birthDate.getFullYear()
+        // console.log(age)
         return age
     }
 
     const value = {
-        currency, slotDateFormat, calculateAge
+        currency,
+        slotDateFormat,
+        calculateAge,
     }
 
     return (
@@ -30,6 +35,7 @@ const AppContextProvider = (props) => {
             {props.children}
         </AppContext.Provider>
     )
+
 }
 
 export default AppContextProvider

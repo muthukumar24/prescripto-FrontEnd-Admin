@@ -25,7 +25,7 @@ const Login = () => {
     try {
       if (state === 'Admin') {
 
-        const { data } = await axios.post('http://localhost:4000/api/admin/login', { email, password })
+        const { data } = await axios.post('https://prescripto-backend-1af3.onrender.com/api/admin/login', { email, password })
         if (data.success) {
           setAToken(data.token)
           localStorage.setItem('aToken', data.token);
@@ -36,7 +36,7 @@ const Login = () => {
   
       } else {
   
-        const { data } = await axios.post('http://localhost:4000/api/doctor/login', { email, password })
+        const { data } = await axios.post('https://prescripto-backend-1af3.onrender.com/api/doctor/login', { email, password })
         if (data.success) {
           setDToken(data.token)
           localStorage.setItem('dToken', data.token)
@@ -78,8 +78,8 @@ const Login = () => {
         </button>
         {
           state === 'Admin'
-            ? <p>Doctor Login? <span onClick={() => setState('Doctor')} className='text-primary underline cursor-pointer'>Click here</span></p>
-            : <p>Admin Login? <span onClick={() => setState('Admin')} className='text-primary underline cursor-pointer'>Click here</span></p>
+            ? <p className='font-bold'>Doctor Login? <span onClick={() => setState('Doctor')} className='text-primary underline cursor-pointer hover:text-gray-800'>Click here</span></p>
+            : <p className='font-bold'>Admin Login? <span onClick={() => setState('Admin')} className='text-primary underline cursor-pointer hover:text-gray-800'>Click here</span></p>
         }
       </div>
     </form>

@@ -46,7 +46,7 @@ const AddDoctor = () => {
     //       console.log(`${key}: ${value}`);
     //   });
 
-      const { data } = await axios.post('http://localhost:4000/api/admin/add-doctor', formData, { headers: { aToken } })
+      const { data } = await axios.post('https://prescripto-backend-1af3.onrender.com/api/admin/add-doctor', formData, { headers: { aToken } })
       if (data.success) {
           toast.success(data.message)
           setDocImg(false)

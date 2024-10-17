@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { toast } from "react-toastify";
+import axios from "axios";
 import { AdminContext } from '../../context/AdminContext'
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
@@ -19,7 +21,7 @@ const DoctorsList = () => {
   // Remove Doctor
   const removeDoctor = async (id) => {
     try {
-      const response = await axios.post('http://localhost:4000/api/admin/remove-doctor', { id }, { headers: { aToken } });
+      const response = await axios.post('https://prescripto-backend-1af3.onrender.com/api/admin/remove-doctor', { id }, { headers: { aToken } });
       if (response.data.success) {
         toast.success(response.data.message);
         await getAllDoctors();
